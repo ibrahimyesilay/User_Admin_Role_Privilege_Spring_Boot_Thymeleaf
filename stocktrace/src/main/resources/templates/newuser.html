@@ -1,0 +1,181 @@
+<!DOCTYPE html >
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <title>New User</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <link href="https://stackpath.bootstrapcdn.com/bootswatch/4.4.1/darkly/bootstrap.min.css" rel="stylesheet" integrity="sha384-rCA2D+D9QXuP2TomtQwd+uP50EHjpafN+wruul0sXZzX/Da7Txn4tB9aLMZV4DZm" crossorigin="anonymous">
+    <script src="https://kit.fontawesome.com/e9d1329982.js" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+
+    <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/3.3.7/css/bootstrap.min.css}" />
+
+    <link rel="stylesheet" type="text/css" media="all"
+          href="../../static/css/flatly/bootstrap.min.css"
+          th:href="@{/css/flatly/bootstrap.min.css}" />
+    <script th:src="@{webjars/jquery/jquery.min.js}"></script>
+    <script th:src="@{webjars/bootstrap/bootstrap.min.js}"></script>
+
+        <style>
+            section{
+                margin-top: 5%;
+                margin-bottom: 10%;
+            }
+        </style>
+
+</head>
+<body>
+
+    <div class="container">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <a class="navbar-brand" href="#">Doşland Doşlan Über Alles</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+          
+            <div class="collapse navbar-collapse" id="navbarColor02">
+              <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                  <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#">Page 1</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#">Page 2</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#">Page 3</a>
+                </li>
+              </ul>
+              
+            </div>
+          </nav>
+    </div>
+
+<section>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-12 col-md-8 col-lg-8 col-xl-6">
+
+                <div th:if="${param.success}">
+                    <div class="alert alert-info">You've successfully registered to our awesome app!</div>
+                </div>
+
+                <div class="row">
+                    <div class="col text-center">
+                        <h1>Register</h1>
+                    </div>
+                </div>
+
+                <!-- Remember to add more information here -->
+
+
+                <form th:action="@{/newuser}" th:object="${user}" method="post">
+                    <p class="error-message" th:if="${#fields.hasGlobalErrors()}" th:each="error : ${#fields.errors('global')}" th:text="${error}">Validation error</p>
+
+                                    <!--
+                                     <div class="row align-items-center mt-4">
+                                         <div class="col mt-4" th:classappend="${#fields.hasErrors('userName')}? 'has-error':''">
+                                             <input id="userName" type="text" class="form-control" placeholder="User Name" th:field="*{userName}">
+                                             <p class="error-message" th:each="error : ${#fields.errors('userName')}" th:text="${error}">Validation error</p>
+                                         </div>
+                                     </div>
+                                     -->
+
+
+                <div class="row align-items-center">
+                    <div class="col mt-4" th:classappend="${#fields.hasErrors('firstName')}? 'has-error':''">
+                        <input id="firstName" type="text" class="form-control" placeholder="First Name" th:field="*{firstName}">
+                        <p class="error-message" th:each="error: ${#fields.errors('firstName')}" th:text="${error}">Validation error</p>
+                    </div>
+                    <div class="col mt-4" th:classappend="${#fields.hasErrors('lastName')}? 'has-error':''">
+                        <input id="lastName" type="text" class="form-control" placeholder="Last Name" th:field="*{lastName}">
+                        <p class="error-message" th:each="error : ${#fields.errors('lastName')}" th:text="${error}">Validation error</p>
+                    </div>
+                </div>
+
+                <div class="row align-items-center">
+
+
+
+
+                    <div class="col mt-4" th:classappend="${#fields.hasErrors('bDay')}? 'has-error':''">
+                        <input id="bDay" type="date" class="form-control input-sm" placeholder="Birthday" th:field="*{bDay}">
+                        <p class="error-message" th:each="error : ${#fields.errors('bDay')}" th:text="${error}">Validation error</p>
+                    </div>
+
+
+                    <div class="row">
+                        <div class="col mt-4" th:classappend="${#fields.hasErrors('gender')}? 'has-error':''">
+                            <select class="form-control" id="gender" th:field="*{gender}">
+                                <option value="Male">Male       </option>
+                                <option value="Female">Female     </option>
+                                <option value="Diverse">Diverse    </option>
+                            </select>
+                            <p class="error-message" th:each="error : ${#fields.errors('gender')}" th:text="${error}">Validation error</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row align-items-center mt-4" >
+                    <div class="col" th:classappend="${#fields.hasErrors('userEmail')}? 'has-error':''">
+                        <input id="userEmail" type="email" class="form-control" placeholder="Email" th:field="*{userEmail}">
+                        <p class="error-message" th:each="error : ${#fields.errors('userEmail')}" th:text="${error}">Validation error</p>
+                    </div>
+                </div>
+
+                <div class="row align-items-center mt-4">
+                    <div class="col" th:classappend="${#fields.hasErrors('userEmailR')}? 'has-error':''">
+                        <input type="email" id="userEmailR" th:field="*{userEmailR}" class="form-control" placeholder="Confirm Email">
+                        <p class="error-message" th:each="error : ${#fields.errors('userEmailR')}" th:text="${error}">Validation error</p>
+                    </div>
+                </div>
+                <div class="row align-items-center mt-4">
+                    <div class="col"th:classappend="${#fields.hasErrors('userPass')}? 'has-error':''">
+                        <input id="userPass"  type="password" class="form-control" placeholder="Password" th:field="*{userPass}" >
+                        <p class="error-message" th:each="error : ${#fields.errors('userPass')}" th:text="${error}">Validation error</p>
+                    </div>
+                    <div class="col" th:classappend="${#fields.hasErrors('userPassR')}? 'has-error':''">
+                        <input id="userPassR" class="form-control" type="password" th:field="*{userPassR}" placeholder="Confirm Password">
+                        <p class="error-message" th:each="error : ${#fields.errors('userPassR')}" th:text="${error}">Validation error</p>
+                    </div>
+                </div>
+
+                    <div class="row justify-content-start mt-4">
+                        <div class="col">
+                            <div class="form-group" th:classappend="${#fields.hasErrors('userTerms')}? 'has-error':''">
+                                <input id="userTerms" type="checkbox" th:field="*{userTerms}" />
+                                <label class="control-label" for="userTerms"> I agree with the <a href="#">terms and conditions</a> for Registration.</label>
+                                <p class="error-message" th:each="error : ${#fields.errors('userTerms')}" th:text="${error}">Validation error</p>
+                            </div>
+                            <button class="btn btn-primary mt-4">Submit</button>
+                            <span>Already registered? <a href="/" th:href="@{/login}">Login here</a></span>
+                        </div>
+                    </div>
+
+
+                </form>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+
+    <script th:src="@{/webjars/jquery/jquery.min.js}"></script>
+    <script th:src="@{/webjars/popper.js/umd/popper.min.js}"></script>
+    <script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+    <script th:src="@{assets/bootstrap-datepicker/js/bootstrap-datepicker.js}"></script>
+
+    <script>
+        $('.input-group.date').datepicker({
+            autoclose: true,
+            todayHighlight: true
+        });
+    </script>
+</body>
+</html>

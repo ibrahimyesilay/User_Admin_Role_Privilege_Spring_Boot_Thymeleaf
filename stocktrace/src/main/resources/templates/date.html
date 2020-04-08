@@ -1,0 +1,87 @@
+<!DOCTYPE html >
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <title>New User</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link href="https://stackpath.bootstrapcdn.com/bootswatch/4.4.1/darkly/bootstrap.min.css" rel="stylesheet" integrity="sha384-rCA2D+D9QXuP2TomtQwd+uP50EHjpafN+wruul0sXZzX/Da7Txn4tB9aLMZV4DZm" crossorigin="anonymous">
+    <script src="https://kit.fontawesome.com/e9d1329982.js" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+
+    <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/3.3.7/css/bootstrap.min.css}" />
+
+    <link rel="stylesheet" type="text/css" media="all"
+          href="../../static/css/flatly/bootstrap.min.css"
+          th:href="@{/css/flatly/bootstrap.min.css}" />
+    <script th:src="@{webjars/jquery/jquery.min.js}"></script>
+    <script th:src="@{webjars/bootstrap/bootstrap.min.js}"></script>
+
+    <style>
+        section{
+            margin-top: 5%;
+            margin-bottom: 10%;
+        }
+    </style>
+
+</head>
+<body>
+
+<div class="container">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="#">Doşland Doşlan Über Alles</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarColor02">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Page 1</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Page 2</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Page 3</a>
+                </li>
+            </ul>
+
+        </div>
+    </nav>
+</div>
+
+
+<h1>Format ISO</h1>
+<p th:text="${#dates.formatISO(standardDate)}"></p>
+<p th:text="${#temporals.formatISO(localDateTime)}"></p>
+<p th:text="${#temporals.formatISO(localDate)}"></p>
+<p th:text="${#temporals.formatISO(timestamp)}"></p>
+
+
+
+<h1>Format manually</h1>
+<p th:text="${#dates.format(standardDate, 'dd-MM-yyyy HH:mm')}"></p>
+<p th:text="${#temporals.format(localDateTime, 'dd-MM-yyyy HH:mm')}"></p>
+<p th:text="${#temporals.format(localDate, 'MM-yyyy')}"></p>
+
+
+
+<h1>Show only which day of a week</h1>
+<p th:text="${#dates.day(standardDate)}"></p>
+<p th:text="${#temporals.day(localDateTime)}"></p>
+<p th:text="${#temporals.day(localDate)}"></p>
+
+<script th:src="@{/webjars/jquery/jquery.min.js}"></script>
+<script th:src="@{/webjars/popper.js/umd/popper.min.js}"></script>
+<script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+<script th:src="@{assets/bootstrap-datepicker/js/bootstrap-datepicker.js}"></script>
+
+</script>
+</body>
+</html>
